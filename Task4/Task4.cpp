@@ -50,14 +50,8 @@ class FileO {
 public:
     FileO() {}
     EncryptionLibrary EncryptLib;
-    void Save(std::string name, std::vector<std::string> strings) {
-        std::ofstream file(name);
-        for (int i = 0; i < strings.size(); i++)
-        {
-            file << strings[i] << std::endl;
-        }
-        file.close();
-    }
+
+
     void Read(std::string fileName, int key, std::string choice) {
         std::ifstream file(fileName);
         if (!file.is_open()) {
@@ -97,23 +91,29 @@ public:
         }
     }
 
+    void WriteEncrypted(std::string name) {
+        std::ofstream file(name);
+        for (int i = 0; i < ArrayEncrypted.size(); i++)
+        {
+            file << ArrayEncrypted[i] << std::endl;
+        }
+        file.close();
+    }
+
+    void WriteDecrypted(std::string name) {
+        std::ofstream file(name);
+        for (int i = 0; i < ArrayDecrypted.size(); i++)
+        {
+            file << ArrayEncrypted[i] << std::endl;
+        }
+        file.close();
+    }
+
 private:
     std::vector<std::string> ArrayDecrypted;
     std::vector<std::string> ArrayEncrypted;
 };
 
-
-
-
-
-
-
-
-
-
-
-//typedef std::string(*encrypt_ptr_t)(std::string, int);
-//typedef std::string(*decrypt_ptr_t)(std::string, int);
 
 int main()
 {
